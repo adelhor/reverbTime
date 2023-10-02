@@ -23,3 +23,16 @@ val = (material,)
 mycursor.execute(sql, val)
 my_material = mycursor.fetchall()
 print(my_material)
+
+out = []
+for x in my_material:
+    for item in x:
+        out.append(item)
+
+surface = float(input('What is the size of surface? \n'))
+
+x=2
+while x < len(out):
+    a = round(out[x]*surface,2)
+    print(a)
+    x = x + 1
