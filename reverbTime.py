@@ -1,4 +1,14 @@
 from abc import ABC
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host = 'localhost',
+    user = 'root',
+    password = 'Y1012Jqkhkp',
+    database = 'coefficient'
+)
+
+mycursor=mydb.cursor()
 
 class Space(ABC):
 
@@ -9,11 +19,29 @@ class Space(ABC):
     def reverberation_time(self, value):
         self._reverberation_time = round(value,1)
 
-    def __init__(self,type_of_space,volume, area, coefficient):
+    def __init__(self,type_of_space,volume, area, material):
         self.type_of_space = type_of_space
         self.volume = volume
         self.area = area
-        self.coefficient = coefficient
+        self.material = material
+        self.absorption()
+        self.calculation()
+
+    def absorption(self):
+        sql = "SELECT * FROM coefficient WHERE MATERIAL = %s"
+        val = (self.material,)
+        mycursor.execute(sql, val)
+        my_material = mycursor.fetchall()
+        out = []
+        for x in my_material:
+            for item in x:
+                out.append(item)
+
+        x=2
+        while x < len(out):
+            self.total_absorption = round(out[x]*self.area,2)
+            x = x + 1
 
     def calculation(self):
-        self.reverberation_time = (0.161*self.volume)/(self.area*self.coefficient)
+        self.reverberation_time = (0.161*self.volume)/self.total_absorption
+        print(self.reverberation_time)
