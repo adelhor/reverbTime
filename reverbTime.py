@@ -38,9 +38,13 @@ class Space(ABC):
                 out.append(item)
 
         x=2
+        global total_absorption
+        total_absorption=[]
         while x < len(out):
-            self.total_absorption = round(out[x]*self.area,2)
+            a = round(out[x]*self.area,2)
+            total_absorption.append(a)
             x = x + 1
+        print(total_absorption)
 
     def calculation(self):
         self.reverberation_time = (0.161*self.volume)/self.total_absorption
