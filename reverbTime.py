@@ -11,20 +11,21 @@ mydb = mysql.connector.connect(
 mycursor=mydb.cursor()
 
 class Space(ABC):
-
+    '''
     @property
     def reverberation_time(self):
         return self._reverberation_time
     @reverberation_time.setter
     def reverberation_time(self, value):
-        self._reverberation_time = round(value,1)
-
+        #value = round(value,1)
+        self._reverberation_time.append( value )
+    '''
     def __init__(self,type_of_space,volume, area, material):
         self.type_of_space = type_of_space
         self.volume = volume
         self.area = area
         self.material = material
-        self.absorption()
+        #self.absorption()
         self.calculation()
 
     def absorption(self):
@@ -47,5 +48,8 @@ class Space(ABC):
         print(total_absorption)
 
     def calculation(self):
-        self.reverberation_time = (0.161*self.volume)/self.total_absorption
-        print(self.reverberation_time)
+        self.absorption()
+        reverberation_time = []
+        for i in total_absorption:
+            reverberation_time.append(round((0.161*self.volume)/i,1))
+        print(reverberation_time)
