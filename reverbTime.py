@@ -1,5 +1,6 @@
 import mysql.connector
 import matplotlib.pyplot as plt
+import matplotlib.ticker
 
 mydb = mysql.connector.connect(
     host = 'localhost',
@@ -46,9 +47,12 @@ class Space():
             reverberation_time.append(round((0.161*volume)/i,1))
         print(reverberation_time)
         x = [125, 250, 500, 1000, 2000, 4000]
-        plt.plot(x,reverberation_time)
-        plt.xscale("log", base=2)
-        #plt.xlim(125,4000)
-        plt.xticks([125, 250, 500, 1000, 2000, 4000])
+        fig, ax = plt.subplots()
+        ax.plot(x,reverberation_time)
+        ax.set_xscale("log")
+        ax.set_xticks([125, 250, 500, 1000, 2000, 4000])
+        ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+        plt.xlabel("Frequency [Hz]")
+        plt.ylabel("Reverberation time [s]")
         plt.grid(True)
         plt.show()
