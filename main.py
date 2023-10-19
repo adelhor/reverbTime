@@ -9,8 +9,8 @@ volume = float(input('What is the volume of space? \n'))
 total_absorption = [0] * 6
 
 while True:
-    user_option = int(input("Press 1 if you want add surface to your space. Press 2 if you finish adding surfaces and want to calculate the reverberation time \n" 
-                            "Press 3 if you want to add the metarial's absorption coefficient to database and press 4 if you want to see database of coefficients \n"))
+    user_option = int(input("Press 1 if you want add surface to your space. \nPress 2 if you finish adding surfaces and want to calculate the reverberation time \n" 
+                            "Press 3 if you want to add the metarial's absorption coefficient to database. \nPress 4 if you want to see database of coefficients \n"))
     
     if user_option == 1:
 
