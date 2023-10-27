@@ -41,14 +41,29 @@ class Space():
         return total_absorption
         #print(total_absorption)
 
-    def calculation(volume, total_absorption):
+    def calculation(volume, total_absorption, type_of_space):
         reverberation_time = []
         for i in total_absorption:
             reverberation_time.append(round((0.161*volume)/i,1))
         print(reverberation_time)
+
+        sql = "SELECT * FROM requirements WHERE SPACE = %s"
+        val = (type_of_space, )
+        mycursor.execute(sql, val)
+        req = mycursor.fetchall()
+        out = []
+        for y in req:
+            i=2
+            while i < len(y):
+                out.append(y[i])
+                i+=1
+        
         x = [125, 250, 500, 1000, 2000, 4000]
+        
         fig, ax = plt.subplots()
-        ax.plot(x,reverberation_time)
+        ax.plot(x, out, 'r-.', label='requirements')
+        ax.plot(x,reverberation_time, label = 'calculated RT')
+        ax.legend(loc='upper right')
         ax.set_xscale("log")
         ax.set_xticks([125, 250, 500, 1000, 2000, 4000])
         ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
