@@ -20,7 +20,7 @@ while True:
         total_absorption = np.add(absorption, total_absorption)
 
     elif user_option == 2:
-        Space.calculation(volume, total_absorption)
+        Space.calculation(volume, total_absorption, type_of_space)
         print('The reverberation time has been calculated')
         break
 
