@@ -2,7 +2,7 @@ from reverbTime import *
 import numpy as np
 from DB import *
 
-type_of_space = input('Write the type of space that you wish to calculate the reverberation time. \n')
+type_of_space = input('Write the type of space that you wish to calculate the reverberation time. \n').lower()
 
 volume = float(input('What is the volume of space? \n'))
 
@@ -14,7 +14,7 @@ while True:
     
     if user_option == 1:
 
-        material = input('Write the material of the first surface \n')
+        material = input('Write the material of the first surface \n').lower()
         area = float(input('What is the size of surface? \n'))
         absorption = Space.absorption(area, material)
         total_absorption = np.add(absorption, total_absorption)
@@ -25,7 +25,7 @@ while True:
         break
 
     elif user_option == 3:
-        material_name = input('Write the name of the material that you want to add \n')
+        material_name = input('Write the name of the material that you want to add \n').lower()
         Hz125 = float(input('Write the absorption coefficent for 125 Hz \n'))
         Hz250 = float(input('Write the absorption coefficent for 250 Hz \n'))
         Hz500 = float(input('Write the absorption coefficent for 500 Hz \n'))
