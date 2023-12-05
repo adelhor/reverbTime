@@ -1,13 +1,17 @@
 import mysql.connector
+import sys
 
-mydb = mysql.connector.connect(
-    host = 'localhost',
-    user = 'root',
-    password = 'Y1012Jqkhkp',
-    database = 'coefficient'
-)
-
-mycursor=mydb.cursor()
+try:
+    mydb = mysql.connector.connect(
+     host = 'localhost',
+     user = 'root',
+        password = 'Y1012Jqkhkp',
+        database = 'coefficient'
+    )
+    mycursor=mydb.cursor()
+except Exception as e:
+    print(e)
+    sys.exit()
 
 class DB():
     def __init__(self, material_name, Hz125, Hz250, Hz500, Hz1000, Hz2000, Hz4000):
