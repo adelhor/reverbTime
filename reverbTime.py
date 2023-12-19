@@ -57,9 +57,7 @@ class Space():
             while i < len(y):
                 out.append(y[i])
                 i+=1
-        
         x = [125, 250, 500, 1000, 2000, 4000]
-        
         fig, ax = plt.subplots()
         ax.plot(x, out, 'r-.', label='requirements')
         ax.plot(x,reverberation_time, label = 'calculated RT')
