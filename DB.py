@@ -24,7 +24,7 @@ class DB():
        self.Hz4000 = Hz4000
 
     def write_material(self):
-        sql = "INSERT INTO figures(shape, first_parameter, second_parameter, third_parameter, height) values(%s, %s, %s, %s, %s, %s, %s, %s)"
+        sql = "INSERT INTO coefficient (MATERIAL, 125Hz, 250Hz, 500Hz, 1000Hz, 2000Hz, 4000Hz) values(%s, %s, %s, %s, %s, %s, %s)"
         val = (self.material_name, self.Hz125, self.Hz250, self.Hz500, self.Hz1000, self.Hz2000, self.Hz4000)
         mycursor.execute(sql, val)
         mydb.commit()
