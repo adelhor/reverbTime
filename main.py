@@ -2,7 +2,7 @@ from reverbTime import *
 import numpy as np
 from DB import *
 
-type_of_space = input('Write the type of space that you wish to calculate the reverberation time. \n').lower()
+type_of_space = input('Write the type of space that you wish to calculate the reverberation time. \n')
 
 volume = float(input('What is the volume of space? \n'))
 
@@ -14,7 +14,7 @@ while True:
     
     if user_option == 1:
 
-        material = input('Write the material of the first surface \n').lower()
+        material = input('Write the material of the first surface \n')
         area = float(input('What is the size of surface? \n'))
         absorption = Space.absorption(area, material)
         total_absorption = np.add(absorption, total_absorption)
@@ -22,17 +22,17 @@ while True:
     elif user_option == 2:
         Space.calculation(volume, total_absorption, type_of_space)
         print('The reverberation time has been calculated')
-        break
 
     elif user_option == 3:
-        material_name = input('Write the name of the material that you want to add \n').lower()
+        material_name = input('Write the name of the material that you want to add \n')
         Hz125 = float(input('Write the absorption coefficent for 125 Hz \n'))
         Hz250 = float(input('Write the absorption coefficent for 250 Hz \n'))
         Hz500 = float(input('Write the absorption coefficent for 500 Hz \n'))
         Hz1000 = float(input('Write the absorption coefficent for 1000 Hz \n'))
         Hz2000 = float(input('Write the absorption coefficent for 2000 Hz \n'))
         Hz4000 = float(input('Write the absorption coefficent for 4000 Hz \n'))
-        DB.write_material(material_name, Hz125, Hz250, Hz500, Hz1000, Hz2000, Hz4000)
+        my_material = DB(material_name, Hz125, Hz250, Hz500, Hz1000, Hz2000, Hz4000 )
+        my_material.write_material()
 
     elif user_option == 4:
         DB.show_db()
