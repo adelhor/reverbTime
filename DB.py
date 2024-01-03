@@ -5,7 +5,7 @@ try:
     mydb = mysql.connector.connect(
      host = 'localhost',
      user = 'root',
-        password = 'Y1012Jqkhkp',
+        password = 'XXX', #password to local database 'coefficient'
         database = 'coefficient'
     )
     mycursor=mydb.cursor()
@@ -23,15 +23,24 @@ class DB():
        self.Hz2000 = Hz2000
        self.Hz4000 = Hz4000
 
-    def write_material(self):
+    #method allows to add the material's coefficients
+    def write_material(self): 
         sql = "INSERT INTO coefficient (MATERIAL, 125Hz, 250Hz, 500Hz, 1000Hz, 2000Hz, 4000Hz) values(%s, %s, %s, %s, %s, %s, %s)"
         val = (self.material_name, self.Hz125, self.Hz250, self.Hz500, self.Hz1000, self.Hz2000, self.Hz4000)
         mycursor.execute(sql, val)
         mydb.commit()
         print('The record has been added')
 
-    def show_db():
+    #method that shows materials and their absorption coefficents from database
+    def show_db_coefficient():
         mycursor.execute("SELECT * FROM coefficient")
         result = mycursor.fetchall()
         for row in result:
             print(row)
+            
+   #method that shows spaces which the user can calculate the reverberation time  
+    def show_db_requirements():
+        mycursor.execute("SELECT * FROM requirements")
+        result = mycursor.fetchall()
+        for row in result:
+            print(f"{row[1]}")
