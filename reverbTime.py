@@ -5,7 +5,7 @@ import matplotlib.ticker
 mydb = mysql.connector.connect(
     host = 'localhost',
     user = 'root',
-    password = 'Y1012Jqkhkp',
+    password = 'XXX', #password to local database 'coefficient'
     database = 'coefficient'
 )
 
@@ -21,6 +21,7 @@ class Space():
         self.calculation()
 
     @classmethod
+    #method that returns total absorption of the space by chosing selected material from database and the size of surface
     def absorption(cls, area, material):
         sql = "SELECT * FROM coefficient WHERE MATERIAL = %s"
         val = (material,)
@@ -39,8 +40,8 @@ class Space():
             total_absorption.append(a)
             x = x + 1
         return total_absorption
-        #print(total_absorption)
 
+    #method which calculate the reverberation time and generate the chart that includes the calculated time and required time
     def calculation(volume, total_absorption, type_of_space):
         reverberation_time = []
         for i in total_absorption:
