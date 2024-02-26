@@ -13,7 +13,7 @@ while True:
         DB.show_db_requirements()
         type_of_space = input('Write the type of space that you wish to calculate the reverberation time. \n')
         volume = float(input('What is the volume of space? \n'))
-        total_absorption = [0] * 6
+        total_absorption = np.array([0]*6)
         
         while True:
             DB.show_db_coefficient()

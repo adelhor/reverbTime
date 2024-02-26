@@ -1,20 +1,21 @@
 import mysql.connector
 import matplotlib.pyplot as plt
 import matplotlib.ticker
+import numpy as np
 
 mydb = mysql.connector.connect(
     host = 'localhost',
     user = 'root',
-    password = 'XXX', #password to local database 'coefficient'
+    password = 'Root!0611', #password to local database 'coefficient'
     database = 'coefficient'
 )
 
 mycursor=mydb.cursor()
 
 class Space():
-    def __init__(self,type_of_space,volume):
+    def __init__(self,type_of_space):
         self.type_of_space = type_of_space
-        self.volume = volume
+        #self.volume = volume
         #self.area = area
         #self.material = material
         self.absorption()
@@ -33,18 +34,19 @@ class Space():
                 out.append(item)
 
         x=2
-        global total_absorption
-        total_absorption=[]
+        global absorption
+        absorption = np.array([])
         while x < len(out):
             a = round(out[x]*area,2)
-            total_absorption.append(a)
+            absorption = np.append(absorption,a)
             x = x + 1
-        return total_absorption
+        return absorption
 
     #method which calculate the reverberation time and generate the chart that includes the calculated time and required time
-    def calculation(volume, total_absorption, type_of_space):
+    @classmethod
+    def calculation(cls, volume, absorption, type_of_space):
         reverberation_time = []
-        for i in total_absorption:
+        for i in absorption:
             reverberation_time.append(round((0.161*volume)/i,1))
         print(reverberation_time)
 

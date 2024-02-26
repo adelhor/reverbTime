@@ -5,7 +5,7 @@ try:
     mydb = mysql.connector.connect(
      host = 'localhost',
      user = 'root',
-        password = 'XXX', #password to local database 'coefficient'
+        password = 'Root!0611', #password to local database 'coefficient'
         database = 'coefficient'
     )
     mycursor=mydb.cursor()
@@ -32,13 +32,15 @@ class DB():
         print('The record has been added')
 
     #method that shows materials and their absorption coefficents from database
+    @staticmethod 
     def show_db_coefficient():
         mycursor.execute("SELECT * FROM coefficient")
         result = mycursor.fetchall()
         for row in result:
             print(row)
             
-   #method that shows spaces which the user can calculate the reverberation time  
+   #method that shows spaces which the user can calculate the reverberation time
+    @staticmethod  
     def show_db_requirements():
         mycursor.execute("SELECT * FROM requirements")
         result = mycursor.fetchall()
