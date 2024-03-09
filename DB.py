@@ -5,7 +5,7 @@ try:
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="Root!0611",  # password to local database 'coefficient'
+        password="",  # password to local database 'coefficient'
         database="coefficient",
     )
     mycursor = mydb.cursor()
@@ -114,7 +114,6 @@ class DbRequirement:
                 i += 1
             return out
 
-    # method that shows spaces which the user can calculate the reverberation time
     @staticmethod
     def show_spaces_in_db():
         """
