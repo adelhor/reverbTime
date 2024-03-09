@@ -1,70 +1,59 @@
-import mysql.connector
 import matplotlib.pyplot as plt
 import matplotlib.ticker
 import numpy as np
+from DB import *
 
-mydb = mysql.connector.connect(
-    host = 'localhost',
-    user = 'root',
-    password = 'XXX', #password to local database 'coefficient'
-    database = 'coefficient'
-)
 
-mycursor=mydb.cursor()
-
-class Space():
-    def __init__(self,type_of_space):
+class Space:
+    def __init__(self, volume, total_absorption, type_of_space):
+        """
+        parameters of space for the final calculation
+        Args:
+            volume (float): volume of the space - user input
+            total_absorption (NDArray): calculated total absorption using absorption method
+            type_of_space (str): user input
+        """
+        self.volume = volume
+        self.total_absorption = total_absorption
         self.type_of_space = type_of_space
-        #self.volume = volume
-        #self.area = area
-        #self.material = material
-        self.absorption()
-        self.calculation()
 
     @classmethod
-    #method that returns total absorption of the space by chosing selected material from database and the size of surface
     def absorption(cls, area, material):
-        sql = "SELECT * FROM coefficient WHERE MATERIAL = %s"
-        val = (material,)
-        mycursor.execute(sql, val)
-        my_material = mycursor.fetchall()
-        out = []
-        for x in my_material:
-            for item in x:
-                out.append(item)
+        """
+        method that returns surface absorption by chosing material from database and the size of the surface
 
-        x=2
-        global absorption
+        Args:
+            area (float): area of the surface in the space - user input
+            material (str): material of the area - user input
+
+        Returns:
+            NDArray: calculated absorption coefficiens in frequency bands
+        """
+        material_coefficient = DbCoefficient.get_material(material)
+        x = 2
         absorption = np.array([])
-        while x < len(out):
-            a = round(out[x]*area,2)
-            absorption = np.append(absorption,a)
+        while x < len(material_coefficient):
+            a = round(material_coefficient[x] * area, 2)
+            absorption = np.append(absorption, a)
             x = x + 1
         return absorption
 
-    #method which calculate the reverberation time and generate the chart that includes the calculated time and required time
-    @classmethod
-    def calculation(cls, volume, absorption, type_of_space):
+    def calculation(self):
+        """
+        method which calculate the reverberation time and generate the chart that includes the calculated time and required time from database
+        """
         reverberation_time = []
-        for i in absorption:
-            reverberation_time.append(round((0.161*volume)/i,1))
+        for i in self.total_absorption:
+            reverberation_time.append(round((0.161 * self.volume) / i, 1))
         print(reverberation_time)
 
-        sql = "SELECT * FROM requirements WHERE SPACE = %s"
-        val = (type_of_space, )
-        mycursor.execute(sql, val)
-        req = mycursor.fetchall()
-        out = []
-        for y in req:
-            i=2
-            while i < len(y):
-                out.append(y[i])
-                i+=1
+        requirement = DbRequirement.get_requirements(self.type_of_space)
+
         x = [125, 250, 500, 1000, 2000, 4000]
         fig, ax = plt.subplots()
-        ax.plot(x, out, 'r-.', label='requirements')
-        ax.plot(x,reverberation_time, label = 'calculated RT')
-        ax.legend(loc='upper right')
+        ax.plot(x, requirement, "r-.", label="requirements")
+        ax.plot(x, reverberation_time, label="calculated RT")
+        ax.legend(loc="upper right")
         ax.set_xscale("log")
         ax.set_xticks([125, 250, 500, 1000, 2000, 4000])
         ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
