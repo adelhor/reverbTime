@@ -28,7 +28,7 @@ numpy
 matplotlib
 mysql-connector-python
 
-##Usage
+## Usage
 Once you've installed the dependencies, execute main.py to start the application:
 ```bash
 python main.py
