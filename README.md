@@ -31,10 +31,10 @@ cd reverberation_time_calculation
 ```bash
 pip install -r requirements.txt
 ```
-Included libraries in requirements.txt are:\
-- numpy\
-- matplotlib\
-- mysql-connector-python\
+Included libraries in requirements.txt are:
+- numpy
+- matplotlib
+- mysql-connector-python
 - python-dotenv
 
 ## Usage
