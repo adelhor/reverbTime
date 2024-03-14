@@ -4,9 +4,17 @@ This Python project contains several utilities for acoustic engineering applicat
 
 ## Project Structure
 
-- `main.py`: The entry point of the application. It integrates various modules and executes the program.
-- `DB.py`: Manages interactions with a MySQL database, handles database operations, ensuring that data is correctly managed and queried.
-- `reverbTime.py`: Implements algorithms to calculate the reverberation time based on input data and acoustic parameters.
+- **Main Application Logic (`main.py`):** As the core component of the application, this script orchestrates various functionalities and provides the following outputs:
+  - A high-level summary or report of the application's actions and outcomes.
+  - Detailed logs that include the progress of each operation and any critical information or warnings.
+- **Database Operations (`DB.py`)** This module is responsible for handling all database interactions. When executed, users can expect the following outputs:
+  - Connection status updates indicating successful or failed database connections.
+  - Confirmation messages upon successful completion of database operations such as insertions, updates, and deletions.
+  - Logs or error messages detailing any issues encountered during database operations.
+- **Reverberation Time Analysis (`reverbTime.py`):** Focused on acoustic analysis, this script outputs:
+  - Numerical results or graphs related to reverberation time calculations or simulations.
+  - Descriptive summaries or interpretations of the analysis results.
+  - Optionally, exported data or figures for further review or sharing.
 
 ## Installation
 
@@ -34,4 +42,3 @@ Once you've installed the dependencies, execute main.py to start the application
 python main.py
 ```
 Ensure your database configurations and other necessary parameters are correctly set within each script.
-
