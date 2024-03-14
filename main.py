@@ -1,6 +1,6 @@
-from reverbTime import *
+from algorithm import *
 import numpy as np
-from DB import *
+from database import *
 
 
 while True:
