@@ -32,10 +32,10 @@ cd reverberation_time_calculation
 pip install -r requirements.txt
 ```
 Included libraries in requirements.txt are:\
-numpy\
-matplotlib\
-mysql-connector-python\
-python-dotenv
+  numpy\
+  matplotlib\
+  mysql-connector-python\
+  python-dotenv
 
 ## Usage
 Once you've installed the dependencies, execute main.py to start the application:
