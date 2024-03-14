@@ -42,3 +42,9 @@ Once you've installed the dependencies, execute main.py to start the application
 python main.py
 ```
 Ensure your database configurations and other necessary parameters are correctly set within each script.
+
+## Outuput
+After displaying the calculated values in the output console, the main program will restart once the chart is closed, allowing the user to choose option.
+### The example output
+![image](https://github.com/adelhor/reverberation_time_calculation/assets/115109011/25a5e64a-d25a-49cd-8e81-eabe2f3b5d24)
+
