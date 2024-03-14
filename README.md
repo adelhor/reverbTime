@@ -1,4 +1,4 @@
-# Reverberation Time Calculation Toolkit
+# Reverberation Time Calculation Tool
 
 This Python project contains several utilities for acoustic engineering applications, including database management, main processing, and reverberation time calculation.
 
@@ -7,11 +7,11 @@ This Python project contains several utilities for acoustic engineering applicat
 - **Main Application Logic (`main.py`):** As the core component of the application, this script orchestrates various functionalities and provides the following outputs:
   - A high-level summary or report of the application's actions and outcomes.
   - Detailed logs that include the progress of each operation and any critical information or warnings.
-- **Database Operations (`DB.py`)** This module is responsible for handling all database interactions. When executed, users can expect the following outputs:
+- **Database Operations (`database.py`)** This module is responsible for handling all database interactions. When executed, users can expect the following outputs:
   - Connection status updates indicating successful or failed database connections.
   - Confirmation messages upon successful completion of database operations such as insertions, updates, and deletions.
   - Logs or error messages detailing any issues encountered during database operations.
-- **Reverberation Time Analysis (`reverbTime.py`):** Focused on acoustic analysis, this script outputs:
+- **Reverberation Time Analysis (`algorithm.py`):** Focused on acoustic analysis, this script outputs:
   - Numerical results or graphs related to reverberation time calculations or simulations.
   - Descriptive summaries or interpretations of the analysis results.
   - Optionally, exported data or figures for further review or sharing.
@@ -34,7 +34,8 @@ pip install -r requirements.txt
 Included libraries in requirements.txt are:\
 numpy\
 matplotlib\
-mysql-connector-python
+mysql-connector-python\
+python-dotenv
 
 ## Usage
 Once you've installed the dependencies, execute main.py to start the application:
